@@ -5,7 +5,7 @@ const vimeo = document.querySelector('#vimeo-player');
 const player = new Player(vimeo);
 
 
-var throt_fun = _.throttle(function (data) {
+let throt_fun = _.throttle(function (data) {
     console.log(data);
     localStorage.setItem("videoplayer-current-time", data.seconds);
 }, 1000);
