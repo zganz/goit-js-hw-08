@@ -5,6 +5,7 @@ const storageKey = 'feedback-from-state';
 const formData = {};
 console.log(formData);
 
+
 const form = document.querySelector('.feedback-form');
 
 form.addEventListener('submit', onFormSubmit);
@@ -14,9 +15,14 @@ populateForm();
 
 function onFormSubmit(evt) {
     evt.preventDefault();
+    if (form.email.value === "" || form.message.value === "") {
+        alert("Поля должны быть заполнены!");
+        return false;
+      }
 
     evt.currentTarget.reset();
     localStorage.removeItem(storageKey);
+    console.log(formData);
 }
 
 function onFormInput(evt){
@@ -25,8 +31,12 @@ function onFormInput(evt){
 }
 
 function populateForm(){
-    const savedMessage = JSON.parse(localStorage.getItem(formData));
+    const savedMessage = JSON.parse(localStorage.getItem(storageKey));
+    
     if(savedMessage){
-        form.value = savedMessage;
+
+        form.email.value = savedMessage.email;
+        form.message.value = savedMessage.message;
+        
     }
 }
