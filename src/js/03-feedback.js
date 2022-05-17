@@ -22,23 +22,19 @@ function onFormSubmit(evt) {
     evt.preventDefault();
     if (form.email.value === "" || form.message.value === "") {
         alert("Поля должны быть заполнены!");
-        return false;
+        return;
       }
+      console.log(formData);
     formData = {};
     evt.currentTarget.reset();
     localStorage.removeItem(storageKey);
-    console.log(formData);
 }
-
 
 function onFormInput(evt){
-    console.log(evt);
-
     formData[evt.target.name] = evt.target.value;
-    console.log(formData);
     localStorage.setItem(storageKey,JSON.stringify(formData));
-
 }
+
 
 function populateForm(){
     const savedMessage = JSON.parse(localStorage.getItem(storageKey));
